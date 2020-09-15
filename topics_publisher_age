@@ -1,0 +1,15 @@
+#! /usr/bin/env python
+import rospy
+from topic_subscriber.msg import Age
+
+rospy.init_node('topic_publisher_age')
+pub = rospy.Publisher('/age', Age, queue_size = 1)
+rate = rospy.Rate(1)
+age = Age() 
+age.years = 10 
+age.months = 5 
+age.days = 15 
+
+while not rospy.is_shutdown(): 
+    pub.publish(age) 
+    rate.sleep()
